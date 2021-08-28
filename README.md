@@ -1,2 +1,2 @@
 # utn
-# random excercises
+random excercises

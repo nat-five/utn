@@ -1,0 +1,39 @@
+# 7.- Censo
+print("   == CENSO POBLACIONAL ==   ")
+# Entrada:
+sexo = input("Ingrese sexo (F/M u otro para salir): ")
+
+# Definiciones:
+cuenta_f = 0
+cuenta_m = 0
+cuenta_f_4_18 = 0
+m_80 = False
+mayoria = ""
+# Proceso:
+while sexo == "F" or sexo == "M":
+    edad = int(input("Ingrese edad "))
+    # Cuenta de F o M:
+    if sexo == "F":
+        cuenta_f += 1
+        if 4 < edad <= 18:
+            cuenta_f_4_18 += 1
+    if sexo == "M":
+        cuenta_m += 1
+        if edad > 80:
+            m_80 = True
+
+    sexo = input("Ingrese F para femenino,M para masculino u otro para salir: ")
+
+
+if cuenta_f > cuenta_m:
+    mayoria = "femenino"
+elif cuenta_f < cuenta_m:
+    mayoria = "masculino"
+# Salida:
+if cuenta_f != cuenta_m:
+    print("La mayoría de los habitantes son del sexo", mayoria)
+else:
+    print("Hay la misma cantodad de habitantes de ambos sexos.")
+print("Hay", cuenta_f_4_18, "mujeres en edad escolar")
+if m_80:
+    print("Al menos un varón es mayor a 80 años.")

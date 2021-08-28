@@ -1,0 +1,32 @@
+# 4.- Secuencia de n números
+
+print(" Análisis de secuencia de números ")
+print("----------------------------------")
+
+termina_cinco = primero = cant_igual_primero = ant = cant_may_ant = 0
+
+n = int(input("Ingrese cantidad de numeros que contendrá la secuencia: "))
+
+for x in range(n):
+    num = int(input("Ingrese número entero mayor a cero: "))
+
+    while num <= 0:
+        print("Error!")
+        num = int(input("Ingrese número entero mayor a cero: "))
+
+    else:
+        if x == 0:
+            primero = num
+            ant = num
+        else:
+            if num == primero:
+                cant_igual_primero += 1
+            if num > ant:
+                cant_may_ant += 1
+
+        if num % 5 == 0 and num % 2 != 0:
+            termina_cinco += 1
+
+print("Cantidad de números que terminan en 5:", termina_cinco)
+print("Cantidad de veces que se repite el primer número cargado:", cant_igual_primero)
+print("Cantidad de números mayores al anterior:", cant_may_ant)

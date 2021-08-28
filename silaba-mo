@@ -1,0 +1,52 @@
+# 16.- Sílaba "mo"
+
+print('Análisis de texto y sílaba "mo"')
+
+cant_letras = cant_letras_totales = cant_cuatro = cant_x_y = cant_palabras = cant_mo = 0
+algun_mo = 0
+tiene_x_y = tiene_m = tiene_mo = False
+
+frase = input("Ingrese texto - termina con punto: ")
+frase = frase.lower()
+
+for letra in frase:
+    if letra.isalpha():
+        cant_letras += 1
+        cant_letras_totales += 1
+        # Sílaba mo:
+        if letra == "m":
+            tiene_m = True
+        elif letra == "o" and tiene_m:
+            if tiene_mo:
+                tiene_mo = False
+            elif algun_mo == 0:
+                tiene_mo = True
+                algun_mo += 1
+        else:
+            tiene_m = False
+        # Tiene x o y:
+        if letra == "x" or letra == "y":
+            tiene_x_y = True
+
+    else:
+        if tiene_mo:
+            cant_mo += 1
+        if tiene_x_y:
+            cant_x_y += 1
+        if cant_letras > 4:
+            cant_cuatro += 1
+
+        cant_palabras += 1
+        cant_letras = 0
+        tiene_x_y = tiene_m = tiene_mo = False
+        algun_mo = 0
+
+        if letra == ".":
+            break
+
+prom = cant_letras_totales / cant_palabras
+
+print("Cantidad de palabras con más de 4 letras:", cant_cuatro)
+print("Cantidad de palabras que contienen x o y:", cant_x_y)
+print("Promedio de letras por palabra", round(prom, 2))
+print('Cantidad de palabras con una sóla sílaba "mo":', cant_mo)

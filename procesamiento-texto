@@ -1,0 +1,46 @@
+# 5.- Procesamiento de texto
+
+print("Procesamiento de texto")
+
+cant_letra = cant_palabras = cant_cons_vocal = cant_menor = cant_li = 0
+tiene_li = False
+primer = ultimo = ""
+vocal = "aeiouáéíóú"
+
+texto = input("Ingrese texto a procesar - terminar con punto: ")
+texto = texto.lower()
+
+for letra in texto:
+    if letra.isalpha():
+        cant_letra += 1
+
+        if cant_letra == 1:
+            primer = letra
+
+        if cant_letra > 2:
+            if letra == "i" and ultimo == "l":
+                tiene_li = True
+
+        ultimo = letra
+
+    else:
+        if (letra == " " or letra == ".") and cant_letra > 0:
+            if primer not in vocal and ultimo in vocal:
+                cant_cons_vocal += 1
+
+            if cant_letra < 4:
+                cant_menor += 1
+
+            cant_palabras += 1
+
+            if tiene_li:
+                cant_li += 1
+            tiene_l = tiene_li = False
+            cant_letra = 0
+
+porc = round((cant_menor / cant_palabras) * 100, 2)
+print("Cant palabras:", cant_palabras)
+print("Cant palabras menor a 4 letras:", cant_menor)
+print("Porcentaje:", porc, "%")
+print("Cant comienza consonante y termina vocal:", cant_cons_vocal)
+print("Cant palabras contiene li:", cant_li)

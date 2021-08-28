@@ -1,0 +1,51 @@
+# 14.- Estadística de guardería náutica
+titulo = "*   Ingresos Guardería Santa Calma   *"
+print("*" * len(titulo))
+print(titulo)
+print("*" * len(titulo))
+
+tot_mens_velero = 0
+tot_mens_lancha = 0
+nombre_may = ""
+cuota_may = 0
+
+n = int(input("Ingrese cantidad de barcos a cargar: "))
+
+print("Datos de los barcos: ")
+
+for i in range(n):
+    nombre = input("Nombre: ")
+    tipo = int(input("Tipo (1: velero - 2: lancha): "))
+    cuota = float(input("Costo mensual: "))
+    print("-" * 40)
+
+    if cuota > cuota_may:
+        cuota_may = cuota
+        nombre_may = nombre
+
+    if tipo == 1:
+        tot_mens_velero += cuota
+    else:
+        tot_mens_lancha += cuota
+
+
+tot_mensual = tot_mens_velero + tot_mens_lancha
+tot_anual_velero = tot_mens_velero * 12
+tot_anual_lancha = tot_mens_lancha * 12
+
+if n > 0:
+    promedio = (tot_mens_lancha + tot_mens_velero) / n
+
+if tot_mensual > 0:
+    porc_vel = (tot_mens_velero / tot_mensual) * 100
+    porc_lan = (tot_mens_lancha / tot_mensual) * 100
+
+print("Estadísticas de ingresos:")
+print("-" * 40)
+print("La embarcación con mayor cuota mensual es", nombre_may)
+print("y paga una cuota de $", cuota_may)
+print("La cuota promedio es de: $", promedio)
+print("Porcentaje ingreso velero:", round(porc_vel, 2), "%")
+print("Porcentaje ingreso lancha:", round(porc_lan, 2), "%")
+print("Total anual lanchas: $", tot_anual_lancha)
+print("Total anual veleros: $", tot_anual_velero)

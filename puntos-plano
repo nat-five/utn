@@ -1,0 +1,38 @@
+# 8.- Puntos en un plano
+
+n = int(input("Ingrese cantidad de puntos a procesar: "))
+cuad_1 = 0
+cuad_3 = 0
+cuadrante = ""
+may_dist_orig = 0
+may_punto = 0
+
+
+for i in range(n):
+    coord_x = int(input("Ingrese coordenada x: "))
+    coord_y = int(input("Ingrese coordenada y: "))
+    if coord_x > 0:
+        if coord_y > 0:
+            cuad_1 += 1
+            cuadrante = "primer"
+        else:
+            cuadrante = "cuarto"
+    if coord_x < 0:
+        if coord_y > 0:
+            cuadrante = "segundo"
+        else:
+            cuad_3 += 1
+            cuadrante = "tercer"
+
+    punto = (coord_x, coord_y)
+    dist_orig = (coord_x ** 2 + coord_y ** 2) ** 0.5
+
+    if dist_orig > may_dist_orig:
+        may_dist_orig = dist_orig
+        may_punto = (coord_x, coord_y)
+
+    print("el punto", punto, "se encuentra en el", cuadrante, "cuadrante")
+
+primer_o_tercer = cuad_1 + cuad_3
+print(primer_o_tercer, " puntos se encuentran en el primer o tercer cuadrante")
+print("El punto que se encuentra a mayor distancia del origen es el punto", may_punto)

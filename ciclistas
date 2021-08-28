@@ -1,0 +1,42 @@
+# 1,. Ciclistas
+
+print("** Tour de Argentine **")
+print("-----------------------")
+print("Estadísticas de carrera")
+print()
+
+record = float(input("Ingrese record vigente de la carrera: "))
+nombre_ganador = ""
+tiempo_ganador = 0
+suma_tiempo = 0
+vueltas = 0
+nombre = input("Ingrese nombre de ciclista: (O para salir) ")
+
+while nombre != "0":
+    tiempo = float(input("Ingrese tiempo de ciclista (mayor a 0): "))
+    while tiempo < 0:
+        print("Tiempo negativo no válido")
+        tiempo = float(input("Ingrese tiempo de ciclista (mayor a 0): "))
+    else:
+        if vueltas == 0:
+            tiempo_ganador = tiempo
+            nombre_ganador = nombre
+        if vueltas > 0 and tiempo_ganador > tiempo:
+            tiempo_ganador = tiempo
+            nombre_ganador = nombre
+    suma_tiempo += tiempo
+    vueltas += 1
+    nombre = input("Ingrese nombre de ciclista: (O para salir) ")
+
+promedio = 0
+
+# Salida:
+if vueltas > 0:
+    promedio = suma_tiempo / vueltas
+    print("El ganador de la carrera es", nombre_ganador, "con un tiempo de",
+          tiempo_ganador, "minutos")
+    if tiempo_ganador < record:
+        print(nombre_ganador, "superó el record anterior de la carrera de", record,
+              "minutos")
+
+    print("El tiempo promedio de los ciclistas fue: ", promedio, "minutos")

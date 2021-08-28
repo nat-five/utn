@@ -1,0 +1,55 @@
+# 6.- Números enteros
+
+# Inicialización de variables:
+
+seg_menor = 0
+suma_pos = 0
+cuenta_pos = 0
+promedio = 0
+mayor_neg = None
+menor = 0
+n = int(input("Ingrese cantidad de números a procesar: "))
+
+for x in range(n):
+    num = int(input("Ingrese el número " + str(x + 1) + ": "))
+
+    if x == 0:
+        menor = num
+    elif x == 1:
+        if num > menor:
+            seg_menor = num
+        else:
+            seg_menor = menor
+            menor = num
+    else:
+        if num < menor:
+            seg_menor = menor
+            menor = num
+
+        elif menor < num < seg_menor:
+            seg_menor = num
+
+    if num < 0:
+        if mayor_neg == None:
+            mayor_neg = num
+        else:
+            if num > mayor_neg:
+                mayor_neg = num
+
+        if num > mayor_neg:
+            mayor_neg = num
+
+    if num > 0:
+        suma_pos += num
+        cuenta_pos += 1
+
+if cuenta_pos > 0:
+    promedio = suma_pos / cuenta_pos
+
+print(">>>   Resultados   <<<")
+print("De los números ingresados")
+print("el segundo menor es", seg_menor)
+if promedio != 0:
+    print("el promedio de los positivos es", round(promedio, 2))
+if mayor_neg != None:
+    print("el mayor de los negativos es", mayor_neg)

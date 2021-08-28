@@ -1,0 +1,31 @@
+# Proceso de discriminantes
+
+proceso = input("Procesar discriminante S/N: ").upper()
+
+cuenta_raiz_1 = 0
+cuenta_raiz_2 = 0
+cuenta_raiz_imag = 0
+
+while proceso == "S":
+    discr = float(input("Ingrese discriminante: "))
+    if discr < 0:
+        cuenta_raiz_imag += 1
+    if discr == 0:
+        cuenta_raiz_1 += 1
+    if discr > 0:
+        cuenta_raiz_2 += 1
+    proceso = input("Procesar otro discriminante S/N: ").upper()
+
+# Proceso:
+total_discr = cuenta_raiz_2 + cuenta_raiz_imag + cuenta_raiz_1
+porc_imag = 0
+if total_discr != 0:
+    porc_imag = (cuenta_raiz_imag / total_discr) * 100
+# Salida:
+print()
+print("***  Resumen  ***")
+print("Discriminantes con 1 raíz: ", cuenta_raiz_1)
+print("Discriminantes con 2 raíces: ", cuenta_raiz_2)
+print("Discriminantes con raíces imaginarias: ", cuenta_raiz_imag)
+print("Los discriminantes con raíces imaginarias representan un", round(porc_imag, 1),
+      "% del total de discriminantes ingresados.")

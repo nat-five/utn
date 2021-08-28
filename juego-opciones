@@ -1,0 +1,68 @@
+# 1.- Menú de opciones con secuencias
+menu = "\n" \
+       "************************************\n" \
+       "********        Menú        ********\n" \
+       "************************************\n" \
+       "Ingrese opción:\n" \
+       "1.- Suma de cuadrados de un rango\n" \
+       "2.- Cuenta de vocales de un texto\n" \
+       "3.- Cuenta de pares e impares\n" \
+       "4.- Salir"
+
+opcion = 0
+
+while opcion != 4:
+    print(menu)
+    opcion = int(input(">>> "))
+
+    if opcion == 1:
+
+        suma = 0
+
+        num = int(input("Ingrese número: "))
+        while num <= 0:
+            print("Número ingresado no se puede procesar")
+            print("Sólo ingresar números mayores a cero.")
+            num = int(input("Ingrese número: "))
+
+        for x in range(1, num + 1):
+            suma += x ** 2
+
+        print("La suma de los cuadrados del rango 1 a", num, "es:", suma)
+
+    if opcion == 2:
+
+        anterior = ""
+        vocales = "aeiouáéíóú"
+        fin_vocal = 0
+        texto = input("Ingrese texto - finaliza con punto: ")
+        texto = texto.lower()
+
+        for letra in texto:
+            anterior = letra
+
+            if letra == " " or letra == ".":
+                if anterior in vocales:
+                    fin_vocal += 1
+
+        print(fin_vocal, "palabras terminan en vocal.")
+
+    if opcion == 3:
+
+        impar = 0
+        par = 0
+        num = int(input("Ingrese número - finaliza con cero: "))
+        while num != 0:
+            if num % 2 == 0:
+                par += 1
+            else:
+                impar += 1
+            num = int(input("Ingrese número - finaliza con cero: "))
+
+        if par > impar:
+            print("Ingresó mayor cantidad de pares.")
+        else:
+            print("Ingresó mayor cantidad de impares.")
+
+else:
+    print("Gracias por jugar!")

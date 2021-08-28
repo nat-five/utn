@@ -1,0 +1,23 @@
+# 5.- Menores y promedio
+import random
+titulo = "       *    Busquemos el menor    *       "
+print("-" * len(titulo))
+print(titulo)
+print("-" * len(titulo))
+# Definiciones:
+cuenta = 0
+menor = 99999
+suma_men_10000 = 0
+cuenta_men_10000 = 0
+# Proceso:
+while cuenta < 5000:
+    n = random.randint(1, 100000)
+    if menor > n:
+        menor = n
+    cuenta += 1
+    if n < 10000:
+        suma_men_10000 += n
+        cuenta_men_10000 += 1
+prom_men_10000 = suma_men_10000 / cuenta_men_10000
+print("De los 5000 números aleatorios generados,\nel menor fue:", menor)
+print("El promedio de los números menores a 10000 es de:", round(prom_men_10000, 2))

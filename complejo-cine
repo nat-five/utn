@@ -1,0 +1,39 @@
+# 1.- Complejo de cines:
+titulo = "***      Recaudación COMPLEJO CINEMAX      ***"
+print("*" * len(titulo))
+print(titulo)
+print("*" * len(titulo))
+
+# Definiciones:
+cuenta_des_si = 0
+cuenta_funciones = 0
+espect_tot = 0
+recaud_tot = 0
+# Entrada:
+espect = int(input("Ingrese cantidad de espectadores de la función:\n"
+                   "(para salir ingrese 0) "))
+# Proceso:
+while espect != 0:
+    descuento = input("Función con descuento (S/N) ")
+    print("-" * len(titulo))
+    if descuento == "S":
+        recaud = espect * 50
+        cuenta_des_si += 1
+    else:
+        recaud = espect * 75
+    cuenta_funciones += 1
+    espect_tot += espect
+    recaud_tot += recaud
+    espect = int(input("Ingrese cantidad de espectadores de la función:\n"
+                       "(para salir ingrese 0) "))
+# Cálculo porcentaje funciones con descuento:
+porc_des = 0
+if cuenta_funciones != 0:
+    porc_des = (cuenta_des_si / cuenta_funciones) * 100
+# Salida:
+print()
+print(">>>>>>>>     RESUMEN     <<<<<<<")
+print()
+print("Recaudación total: $", recaud_tot)
+print("Cantidad de funciones:", cuenta_funciones)
+print("Funciones con descuento:", cuenta_des_si, "(" + str(round(porc_des, 1)) + "%)")

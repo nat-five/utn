@@ -8,9 +8,9 @@ def porcentaje(cantidad, total):
 def main():
     vocales = "aeiouáéíóú"
     cuenta_letras = cuenta_palabras = 0
-    cuenta_pa_n = cuenta_tres_vocales = cuenta_mas_5 = 0
+    cuenta_pa_n = cuenta_vocales = cuenta_tres_vocales = cuenta_mas_5 = 0
     ultima = ""
-    hay_p = hay_pa = una_vocal = dos_vocales = tres_vocales = False
+    hay_p = hay_pa = False
 
     texto = input("Ingrese texto a analizar - finalice con punto: ")
     texto = texto.lower()
@@ -24,11 +24,7 @@ def main():
                 hay_pa = True
 
             if cuenta_letras > 2 and letra in vocales:
-                if dos_vocales and letra in vocales:
-                    tres_vocales = True
-                if una_vocal and letra in vocales:
-                    dos_vocales = True
-                una_vocal = True
+                cuenta_vocales += 1
 
             ultima = letra
             cuenta_letras += 1
@@ -40,9 +36,9 @@ def main():
                 cuenta_pa_n += 1
             hay_p = hay_pa = False
 
-            if tres_vocales:
+            if cuenta_vocales > 2:
                 cuenta_tres_vocales += 1
-            una_vocal = dos_vocales = tres_vocales = False
+            cuenta_vocales = 0
 
             if cuenta_letras > 5:
                 cuenta_mas_5 += 1

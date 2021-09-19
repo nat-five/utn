@@ -1,0 +1,60 @@
+# 2.- Secuencia 5, 5
+
+
+def porcentaje(cantidad, total):
+    if total > 0:
+        return round(cantidad*100 / total, 2)
+
+
+def es_par(numero):
+    resto = numero % 2
+    if resto == 0:
+        return True
+    else: return False
+
+
+def intervalo(n1, n2, numero):
+    if n1 < numero < n2:
+        return True
+
+
+def main():
+    n1 = int(input("Ingrese valor inferior de intervalo: "))
+    n2 = int(input("Ingrese valor superior de intervalo: "))
+    cuenta = cant_intervalo = anterior = cant_55 = 0
+    impar_par = False
+    num = int(input("Ingrese número - finaliza con cero: "))
+    while num != 0:
+        if intervalo(n1, n2, num):
+            cant_intervalo += 1
+
+        if cuenta == 0:
+            anterior = num
+        else:
+            if not es_par(anterior) and es_par(num):
+                impar_par = True
+
+        if anterior == 5 and num == 5:
+            cant_55 += 1
+
+        anterior = num
+        cuenta += 1
+
+        num = int(input("Ingrese número - finaliza con cero: "))
+
+    porc = porcentaje(cant_intervalo, cuenta)
+
+    if cant_intervalo > 0:
+        print("Cantidad de números ingresados dentro de intervalo: ", cant_intervalo)
+        print("Lo cual representa un", porc, "% del total de números ingresados.")
+    else:
+        print("No se ingresaron números dentro del intervalo informado.")
+
+    if impar_par:
+        print("Hubo al menos un número impar seguido inmediatamente por un número par.")
+    else:
+        print("No hubo ningún número impar seguido inmediatamente por un número par.")
+
+    print("Cantidad de veces que se ingresó la secuencia 5-5:", cant_55)
+
+main()

@@ -1,0 +1,65 @@
+# 4. Secuencia
+
+def control(numero, valor):
+    while numero <= valor:
+        print("Error! El número debe ser mayor a ", valor)
+        numero = int(input(">>> "))
+    return numero
+
+
+def porcentaje(cantidad, total):
+    if total > 0:
+        return round(cantidad*100 / total, 2)
+
+
+def multiplo(numero, valor):
+    if numero % valor == 0:
+        return True
+
+
+def par(numero):
+    return multiplo(numero, 2)
+
+
+def main():
+    p = int(input("Ingrese valor inferior de rango:"))
+    p_val = control(p, 0)
+    q = int(input("Ingrese valor superior de rango:"))
+    q_val = control(q, 0)
+    q_val_en_rango = control(q_val, p_val)
+    rango_val = (p_val, q_val_en_rango)
+    cuenta = cuenta_en_rango = cuenta_par = cuenta_mult = 0
+    anterior = primero = 0
+    print()
+    num = int(input("Ingrese número - finaliza con cero: "))
+
+    while num != 0:
+
+        if rango_val[0] < num < rango_val[1]:
+            cuenta_en_rango += 1
+
+        if par(anterior) and par(num):
+            cuenta_par += 1
+
+        if anterior == 0:
+            primero = num
+        elif multiplo(num, primero):
+            cuenta_mult += 1
+
+        anterior = num
+        cuenta += 1
+
+        num = int(input("Ingrese número - finaliza con cero: "))
+
+    porc = porcentaje(cuenta_en_rango, cuenta)
+
+    print("Cantidad de números dentro del rango [", rango_val[0], ";",
+          rango_val[1], "]:", cuenta_en_rango)
+    print("Lo cual representa un", porc, "% del total de números de la secuencia.")
+    print("Cantidad de veces que se ingresaron números contíguos pares: ",
+          cuenta_par)
+    print("Cantidad de números de la secuencia que son múltiplos del primer "
+          "número ingresado:", cuenta_mult)
+
+
+main()

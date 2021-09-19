@@ -1,0 +1,51 @@
+# 1.- Secuencia 1, 2, 3
+
+num = int(input("Ingrese número - finalizar con cero: "))
+
+# Inicialización:
+div_cuatro = impar_mayor = primero = cuenta_primero = cuenta_sec_123 = cuenta = 0
+hay_1 = hay_12 = False
+while num != 0:
+
+    if num % 4 == 0:
+        div_cuatro += 1
+
+    if cuenta == 0:
+        primero = num
+        cuenta_primero += 1
+
+    if num % 2 != 0:
+        if impar_mayor == 0:
+            impar_mayor = num
+        else:
+            if num > impar_mayor:
+                impar_mayor = num
+
+    if cuenta > 0 and num == primero:
+        cuenta_primero += 1
+
+    if num == 1:
+        hay_1 = True
+
+    if hay_1 and num != 1:
+        if num == 2:
+            hay_12 = True
+        hay_1 = False
+
+    if hay_12 and num != 2:
+        if num == 3:
+            cuenta_sec_123 += 1
+        hay_1 = hay_12 = False
+
+    cuenta += 1
+
+    num = int(input("Ingrese número - finalizar con cero: "))
+
+# Salida:
+print("*********************************************")
+print("***   Análisis de secuencia de números:   ***")
+print("*********************************************")
+print("Cantidad de números divisibles por 4:", div_cuatro)
+print("Mayor número impar:", impar_mayor)
+print("Cuantas veces se ingresó el primer número:", cuenta_primero)
+print("Cuantas veces aparece la secuencia 1-2-3:", cuenta_sec_123)

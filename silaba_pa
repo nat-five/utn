@@ -1,0 +1,60 @@
+# 3.- Inicio con sílaba "pa"
+
+def porcentaje(cantidad, total):
+    if total > 0:
+        return round(cantidad*100 / total, 2)
+
+
+def main():
+    vocales = "aeiouáéíóú"
+    cuenta_letras = cuenta_palabras = 0
+    cuenta_pa_n = cuenta_tres_vocales = cuenta_mas_5 = 0
+    ultima = ""
+    hay_p = hay_pa = una_vocal = dos_vocales = tres_vocales = False
+
+    texto = input("Ingrese texto a analizar - finalice con punto: ")
+    texto = texto.lower()
+
+    for letra in texto:
+
+        if letra.isalpha():
+            if cuenta_letras == 0 and letra == "p":
+                hay_p = True
+            if hay_p and cuenta_letras == 1 and letra == "a":
+                hay_pa = True
+
+            if cuenta_letras > 2 and letra in vocales:
+                if dos_vocales and letra in vocales:
+                    tres_vocales = True
+                if una_vocal and letra in vocales:
+                    dos_vocales = True
+                una_vocal = True
+
+            ultima = letra
+            cuenta_letras += 1
+
+        elif cuenta_letras > 0:
+            cuenta_palabras += 1
+
+            if hay_pa and ultima == "n":
+                cuenta_pa_n += 1
+            hay_p = hay_pa = False
+
+            if tres_vocales:
+                cuenta_tres_vocales += 1
+            una_vocal = dos_vocales = tres_vocales = False
+
+            if cuenta_letras > 5:
+                cuenta_mas_5 += 1
+            cuenta_letras = 0
+
+    porc = porcentaje(cuenta_tres_vocales, cuenta_palabras)
+
+    print('Cantidad de palabras que comienzan con "pa" y terminan con "n":', cuenta_pa_n)
+    print("Cantidad de palabras que presentan más de dos vocales a partir de la "
+          "tercera letra:", cuenta_tres_vocales)
+    print("Lo cual representa un", porc, "% de las palabras del texto.")
+    print("Cantidad de palabras con más de 5 letras:", cuenta_mas_5)
+
+
+main()

@@ -1,0 +1,108 @@
+# 6.- Secuencia promedio de pares
+
+def control(numero, valor):
+    while numero <= valor:
+        print("Error! El número debe ser mayor a ", valor)
+        numero = int(input(">>> "))
+    return numero
+
+
+def multiplo(numero, valor):
+    if numero % valor == 0:
+        return True
+
+
+def par(numero):
+    return multiplo(numero, 2)
+
+
+def opcion_uno():
+    cuenta = cuenta_multiplo = primero = 0
+    num = int(input("Ingrese número entero y positivo: "))
+    num_val = control(num, 0)
+    while num != 0:
+        if cuenta == 0:
+            primero = num_val
+        elif multiplo(num_val, primero):
+            cuenta_multiplo += 1
+        cuenta += 1
+        num = int(input("Ingrese número entero y positivo: "))
+
+    print("Cantidad de números que son múltiplos del primero:", cuenta_multiplo)
+
+
+def opcion_dos():
+    cuenta_intervalo_in = cuenta_intervalo_out = cuenta_par = 0
+    p = int(input("Ingrese valor inferior de intervalo:"))
+    p_val = control(p, 0)
+    q = int(input("Ingrese valor superior de intervalo:"))
+    q_val = control(q, 0)
+    q_val_en_rango = control(q_val, p_val)
+    intervalo_val = (p_val, q_val_en_rango)
+    n = int(input("Ingrese cantidad de números a analizar: "))
+    n_val = control(n, 0)
+
+    for x in range(n_val):
+        num = int(input("Ingrese número: "))
+        if intervalo_val[0] < num < intervalo_val[1]:
+            cuenta_intervalo_in += 1
+            if par(num):
+                cuenta_par += 1
+        else:
+            cuenta_intervalo_out += 1
+
+    print("Cantidad de números dentro del intervalo [", intervalo_val[0], ";",
+          intervalo_val[1], "]:", cuenta_intervalo_in)
+    print("Cantidad de números fuera del intervalo [", intervalo_val[0], ";",
+          intervalo_val[1], "]:", cuenta_intervalo_out)
+    print("Cantidad de números pares dentro del intervalo [", intervalo_val[0], ";",
+          intervalo_val[1], "]:", cuenta_par)
+
+
+def opcion_tres():
+    anterior = suma_par = cuenta_par_total = 0
+    par_consecutivo = False
+    num = int(input("Ingrese número entero y positivo - finaliza si es mayor a 100: "))
+    while num <= 100:
+        num_val = control(num, 0)
+        if par(num_val):
+            cuenta_par_total += 1
+            suma_par += num_val
+        if par(anterior) and par(num_val) and anterior != 0:
+            par_consecutivo = True
+        anterior = num_val
+        num = int(input("Ingrese número entero y positivo - finaliza si es mayor a 100: "))
+
+    prom = suma_par / cuenta_par_total
+
+    if par_consecutivo:
+        print("Se ingresaron al menos dos números pares consecutivos.")
+        print("El promedio de los números pares ingresados es de:", prom)
+    else:
+        print("No se ingresaron números pares consecutivos.")
+
+
+def main():
+    menu = """
+Menú de opciones:
+1.- Múltiplo del primero
+2.- Análisis de intervalo
+3.- Promedio de pares
+4.- Salir
+
+Ingrese opción: 
+"""
+    opcion = -1
+    while opcion < 4:
+        opcion = int(input(menu))
+        if opcion == 1:
+            opcion_uno()
+        elif opcion == 2:
+            opcion_dos()
+        elif opcion == 3:
+            opcion_tres()
+        else:
+            print("FIN")
+
+
+main()
